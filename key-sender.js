@@ -110,9 +110,9 @@ module.exports = function() {
 
     module.execute = function(arrParams) {
         return new Promise(function(resolve, reject) {
-            var jarPath = path.join(__dirname, 'jar', 'key-sender.jar');
+            var jarPath = path.join(__dirname, 'jar', 'key-sender.jar').replace('app.asar', 'app.asar.unpacked');
 
-            var command = 'java -jar \"' + jarPath + '\" ' + arrParams.join(' ') + module.getCommandLineOptions();
+            var command = 'java -jar ' + jarPath + ' ' + arrParams.join(' ') + module.getCommandLineOptions();
 
             return exec(command, {}, function(error, stdout, stderr) {
                 if (error == null) {
